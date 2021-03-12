@@ -1,0 +1,94 @@
+
+
+
+ARITHMETIC AND LOGICAL OPERATION(LIKE WHERE)
+
+1.AND
+> db.epersonal.find({$and:[{ename:"kavin"},{age:26}]}).pretty()
+
+
+OR
+
+> db.epersonal.find({$or:[{ename:"kavin"},{age:76}]}).pretty()
+
+
+IN
+> db.epersonal.find({ecity:{$in:["delhi"]}}).pretty()
+
+
+Notin(nin)
+
+> db.epersonal.find({ecity:{$nin:["delhi"]}}).pretty()
+> db.epersonal.find({ecity:{$nin:["delhi"]}})
+
+
+Not lessthan
+> db.epersonal.find({age:{$not:{$lt:30}}})
+
+
+Not greater than
+> db.epersonal.find({age:{$not:{$gt:30}}})
+
+Greater than
+> db.epersonal.find({age:{$gt:30}})
+
+lesserthan
+> db.epersonal.find({age:{$lt:40}})
+
+
+Equal
+> db.epersonal.find({age:{$eq:40}})
+> db.epersonal.find({age:{$eq:29}})
+
+
+Lessthan equal
+> db.epersonal.find({age:{$lte:29}})
+
+
+greaterthan
+> db.epersonal.find({age:{$gte:29}})
+
+
+
+Find()
+ 
+Select particular row
+> db.epersonal.find({ename:"jesi"}).pretty()
+{
+        "_id" : ObjectId("6013e12fcd2ef56593d00bb5"),
+        "ename" : "jesi",
+        "age" : 32,
+        "ecity" : "London"
+}
+
+sorting
+
+
+ASCENDING(1)
+> db.epersonal.find().sort({age:1}).pretty()	 --JSON FORMAT
+> db.epersonal.find().sort({age:1})			
+
+
+Descending(-1)
+> db.epersonal.find().sort({age:-1}).pretty()
+> db.epersonal.find().sort({age:-1})
+
+
+PROJECTION
+
+EXACT VALUE DISPLAYED 1== SHOW 0==NOT SHOW VALUE
+
+> db.epersonal.find({ename:"ram"},{ecity:1}).pretty()
+It display city only not other fields
+
+{ "_id" : ObjectId("6013e12fcd2ef56593d00bb6"), "ecity" : "bangalore" }
+
+> db.epersonal.find({ename:"ram"},{ecity:0}).pretty()
+
+It shows name and age and not city
+{
+        "_id" : ObjectId("6013e12fcd2ef56593d00bb6"),
+        "ename" : "ram",
+        "age" : 29
+}
+

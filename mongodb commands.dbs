@@ -1,0 +1,150 @@
+ 			CRUD (Create Read Update Delete ) WITH MONGODB
+
+MongoDB is an open-source document database and leading NoSQL database. MongoDB is written in C++.
+
+
+RDBMS			MongoDB
+Database		Database
+Table			Collection
+Tuple/Row		Document
+column			Field
+Table Join		Embedded Documents
+Primary Key		Primary Key (Default key _id provided by MongoDB itself)
+
+OPEN COMMAND  LINE
+1.MANGO SERVER ON
+C:\Users\My>mongod
+
+
+OPEN ANOTHER COMMANDLINE PROMPT
+2.MANGO CLIENT ON
+C:\Users\My>mongo
+MongoDB shell version v4.4.3
+
+3. CHECK MONGODB VERSION
+> db.version()
+4.4.3
+
+4.3.DATABASE LISTING
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+5.CREATE DATABASE
+> use kkemp
+switched to db kkemp
+> show dbs
+admin   0.000GB
+config  0.000GB
+demodb  0.000GB
+local   0.000GB
+> db
+Kkemp
+
+
+6.CREATE COLLECTION OR TABLE FOR EMPLOYEE DATABASE
+> > db.createCollection("epersonal")
+{ "ok" : 1 }
+
+> show collections
+epersonal
+
+
+7.INSERT VALUES INTO TABLE/COLLECTION
+a.	INSERT (DEFAULT ID FOR ALL EMP IN MANGODB )
+b.	DISPLAY USING FIND()
+c.	DISPLAY INSERTED VALUE IN JSON FORMAT
+d.	INSERT OWNID INTO TABLE 
+e.	INSERTONE()
+f.	INSERMANY()
+
+
+a. INSERT (DEFAULT ID FOR ALL EMP IN MANGODB )
+> db.epersonal.insert({ename:"dev",age:45,ecity:"chennai" })
+WriteResult({ "nInserted" : 1 })
+
+
+b.DISPLAY USING FIND()
+> db.epersonal.find()
+{ "_id" : ObjectId("6013dc16cd2ef56593d00bb2"), "ename" : "dev", "age" : 45, "ecity" : "chennai" }
+
+c.DISPLAY INSERTED VALUE IN JSON FORMAT
+
+> db.epersonal.find().pretty()
+{
+        "_id" : ObjectId("6013dc16cd2ef56593d00bb2"),
+        "ename" : "dev",
+        "age" : 45,
+        "ecity" : "chennai"
+}
+
+
+d.	INSERT OWN ID INTO TABLE 
+
+> db.epersonal.insert({_id:1,ename:"anu3",age:35,ecity:"delhi" })
+WriteResult({ "nInserted" : 1 })
+> db.epersonal.find().pretty()
+{
+        "_id" : ObjectId("6013dc16cd2ef56593d00bb2"),
+        "ename" : "dev",
+        "age" : 45,
+        "ecity" : "chennai"
+}
+{ "_id" : 1, "ename" : "anu3", "age" : 35, "ecity" : "delhi" }
+>
+
+e.	INSERTONE()
+
+> db.epersonal.insertOne({ename:"kavin",age:26,ecity:"mumbai"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6013e060cd2ef56593d00bb4")
+}
+
+
+f.	INSERMANY()
+> db.epersonal.insertMany([{ename:"jesi",age:32,ecity:"uk"},{ename:"ram",age:29,ecity:"bangalore"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("6013e12fcd2ef56593d00bb5"),
+                ObjectId("6013e12fcd2ef56593d00bb6")
+        ]
+}
+
+
+
+9.UPDATE TABLE(COLLECTION)
+
+> db.epersonal.update({name:"jesi"},{$set:{city:"London"}})
+
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+
+
+10.Remove 
+
+If samedata (identical) existing in ur table  then use remove (1-FIRSTDATA REMOVED)
+
+> db.epersonal.insert({ename:"sam"})
+
+Remove single time
+> db.epersonal.remove({ename:"sam"},1)
+
+Remove all
+> db.epersonal.remove({ename:"sam"})
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
