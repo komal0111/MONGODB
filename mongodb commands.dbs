@@ -61,11 +61,13 @@ f.	INSERMANY()
 
 
 a. INSERT (DEFAULT ID FOR ALL EMP IN MANGODB )
+
 > db.epersonal.insert({ename:"dev",age:45,ecity:"chennai" })
 WriteResult({ "nInserted" : 1 })
 
 
 b.DISPLAY USING FIND()
+
 > db.epersonal.find()
 { "_id" : ObjectId("6013dc16cd2ef56593d00bb2"), "ename" : "dev", "age" : 45, "ecity" : "chennai" }
 
@@ -104,25 +106,19 @@ e.	INSERTONE()
 
 
 f.	INSERMANY()
+
 > db.epersonal.insertMany([{ename:"jesi",age:32,ecity:"uk"},{ename:"ram",age:29,ecity:"bangalore"}])
-{
-        "acknowledged" : true,
-        "insertedIds" : [
-                ObjectId("6013e12fcd2ef56593d00bb5"),
-                ObjectId("6013e12fcd2ef56593d00bb6")
-        ]
-}
 
 
 
-9.UPDATE TABLE(COLLECTION)
+8.UPDATE TABLE(COLLECTION)
 
 > db.epersonal.update({name:"jesi"},{$set:{city:"London"}})
 
 WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
 
 
-10.Remove 
+9.Remove 
 
 If samedata (identical) existing in ur table  then use remove (1-FIRSTDATA REMOVED)
 
